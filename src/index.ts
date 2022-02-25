@@ -1,19 +1,11 @@
 import http from "http";
 
-import express from "express";
-
-const app = express();
-
-app.get("/", (req, res) => {
-  console.log("ping");
-
-  res.send("pong");
-});
+import { app } from "@/app";
+import * as config from "@/utils/config";
+import * as logger from "@/utils/logger";
 
 const server = http.createServer(app);
 
-server.listen(3001, () => {
-  console.log("Server is listening");
+server.listen(config.PORT, () => {
+  logger.info(`Server is running on port ${config.PORT}!`);
 });
-
-export const f = 10;
